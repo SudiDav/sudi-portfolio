@@ -3,6 +3,65 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+
+const experience = [
+  {
+    role: "Founder & Lead Developer",
+    company: "Nexus Tools",
+    period: "2024 — Present",
+    description: "Building open-source developer tools including Nexus CLI, Syncboard, and Datapipe. Focused on Rust, WebAssembly, and real-time collaboration.",
+    current: true,
+  },
+  {
+    role: "Senior Infrastructure Engineer",
+    company: "Vercel",
+    period: "2021 — 2024",
+    description: "Scaled edge infrastructure to handle 30B+ requests/month. Led the migration from legacy deployment pipeline to a new Kubernetes-based architecture.",
+  },
+  {
+    role: "Software Engineer",
+    company: "Stripe",
+    period: "2019 — 2021",
+    description: "Built internal developer tools for the payments team. Designed and shipped a real-time monitoring dashboard used by 200+ engineers daily.",
+  },
+  {
+    role: "Junior Developer",
+    company: "Freelance",
+    period: "2018 — 2019",
+    description: "Built web applications for startups and small businesses. Focused on React, Node.js, and PostgreSQL.",
+    last: true,
+  },
+];
+
+const skills = {
+  Languages: ["Rust", "TypeScript", "Go", "Python"],
+  Frontend: ["React", "Next.js", "Svelte", "Tailwind"],
+  Backend: ["Node.js", "PostgreSQL", "Redis", "Kafka"],
+  DevOps: ["Docker", "Kubernetes", "Terraform", "GitHub Actions"],
+};
+
+const interests = [
+  {
+    title: "Trail Running",
+    description: "50K ultramarathon finisher. I think best when moving.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19"></path></svg>`,
+  },
+  {
+    title: "Reading",
+    description: "Science fiction and systems thinking. Currently reading Designing Data-Intensive Applications.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>`,
+  },
+  {
+    title: "Photography",
+    description: "Street photography on film. Shooting on a Leica M6 with Portra 400.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>`,
+  },
+  {
+    title: "Music",
+    description: "Amateur jazz pianist. Practicing standards and exploring improvisation.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+  },
+];
 ---
 
 <Layout title="About — Sudi David">
@@ -16,77 +75,105 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
     <section class="hero-section">
       <div class="portrait">
-        <img src="/Avatar.png" alt="Sudi David" width="340" height="400" />
+        <img src="/Avatar.png" alt="Sudi David" width="340" height="420" />
       </div>
       <div class="intro-text">
         <h2 class="headline">I build tools that make developers' lives easier.</h2>
         <p class="bio-paragraph">
-          I'm a full-stack developer with a deep love for developer experience,
-          open source, and building things that matter. I believe great software
-          comes from understanding the people who use it.
+          I'm Sudi David — a full-stack developer based in San Francisco with a deep
+          interest in developer experience, performance engineering, and open source.
+          I've spent the last 8 years building products at the intersection of
+          infrastructure and developer tooling.
         </p>
         <p class="bio-paragraph">
-          When I'm not writing code, you'll find me contributing to open source
-          projects, writing about software architecture, or exploring the
-          intersection of design and engineering.
+          Currently, I'm focused on building Nexus CLI and contributing to the Rust
+          ecosystem. Previously, I helped scale infrastructure at Vercel and built
+          internal tooling at Stripe.
         </p>
         <div class="status-row">
           <span class="status-badge">
             <span class="status-dot"></span>
-            Open to opportunities
+            Available for work
           </span>
-          <span class="location">
+          <span class="location-badge">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            Remote
+            San Francisco, CA
           </span>
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
+    <div class="divider-wrap"><hr class="divider" /></div>
 
     <section class="experience-section">
       <span class="section-label">EXPERIENCE</span>
       <h2 class="section-title">Where I've Worked</h2>
       <div class="timeline">
-        <!-- Timeline entries will go here -->
+        {experience.map((entry) => (
+          <div class="timeline-entry">
+            <div class="timeline-line">
+              <span class:list={["timeline-dot", { current: entry.current }]}></span>
+              {!entry.last && <span class="timeline-connector"></span>}
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-top">
+                <span class="timeline-role">{entry.role}</span>
+                <span class="timeline-period">{entry.period}</span>
+              </div>
+              <span class="timeline-company">{entry.company}</span>
+              <p class="timeline-desc">{entry.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
-    <hr class="divider" />
+    <div class="divider-wrap"><hr class="divider" /></div>
 
     <section class="skills-section">
-      <span class="section-label">TOOLKIT</span>
+      <span class="section-label">EXPERTISE</span>
       <h2 class="section-title">Skills & Technologies</h2>
       <div class="skills-grid">
-        <div class="skill-col">
-          <h3 class="skill-col-title">Languages</h3>
-          <!-- Skill items -->
-        </div>
-        <div class="skill-col">
-          <h3 class="skill-col-title">Frontend</h3>
-        </div>
-        <div class="skill-col">
-          <h3 class="skill-col-title">Backend</h3>
-        </div>
-        <div class="skill-col">
-          <h3 class="skill-col-title">DevOps</h3>
-        </div>
+        {Object.entries(skills).map(([category, items]) => (
+          <div class="skill-col">
+            <h3 class="skill-col-title">{category}</h3>
+            <ul class="skill-list">
+              {items.map((skill) => (
+                <li class="skill-item">
+                  <span class="skill-bullet"></span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
 
-    <hr class="divider" />
+    <div class="divider-wrap"><hr class="divider" /></div>
 
     <section class="beyond-code">
       <div class="beyond-left">
         <span class="section-label">BEYOND CODE</span>
         <h2 class="section-title">When I'm Not Coding</h2>
         <p class="section-desc">
-          I believe the best engineers have rich lives outside of work. Here's what fills my time when the laptop is closed.
+          I believe great software comes from well-rounded thinking. Outside of
+          work, I explore other creative and physical outlets that keep me energized
+          and inspired.
         </p>
       </div>
       <div class="beyond-right">
-        <!-- Interest cards will go here -->
+        {interests.map((interest) => (
+          <div class="interest-card">
+            <div class="interest-icon">
+              <Fragment set:html={interest.icon} />
+            </div>
+            <div class="interest-text">
+              <span class="interest-title">{interest.title}</span>
+              <p class="interest-desc">{interest.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -94,16 +181,16 @@ import Breadcrumb from "../components/Breadcrumb.astro";
       <span class="cta-label">LET'S CONNECT</span>
       <h2 class="cta-title">Interested in working together?</h2>
       <p class="cta-desc">
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        I'm always open to new opportunities, collaborations, and interesting conversations.
       </p>
       <div class="cta-actions">
         <a href="mailto:hello@sudi.dev" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-          Send an Email
+          Get in Touch
         </a>
         <a href="#" class="btn btn-secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
-          Book a Call
+          Schedule a Call
         </a>
       </div>
       <div class="social-row">
@@ -116,8 +203,11 @@ import Breadcrumb from "../components/Breadcrumb.astro";
         <a href="https://www.linkedin.com/in/sudi-m-david-5887b5102/" class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
         </a>
-        <a href="https://dribbble.com" class="social-icon" target="_blank" rel="noopener" aria-label="Dribbble">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"></path><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"></path></svg>
+        <a href="https://www.youtube.com/@sudidav" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
+        </a>
+        <a href="https://hashnode.com/@sudi77" class="social-icon" target="_blank" rel="noopener" aria-label="Hashnode">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.17 3.38a4.644 4.644 0 0 0-4.34 0L4.05 6.76a4.644 4.644 0 0 0-2.17 3.62v5.24c0 1.5.82 2.88 2.17 3.62l5.78 3.38a4.644 4.644 0 0 0 4.34 0l5.78-3.38a4.644 4.644 0 0 0 2.17-3.62v-5.24c0-1.5-.82-2.88-2.17-3.62z"></path><circle cx="12" cy="12" r="3"></circle></svg>
         </a>
       </div>
     </section>
@@ -136,7 +226,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 48px 48px 32px;
+    padding: 64px 120px 0;
   }
 
   .page-title {
@@ -145,17 +235,22 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     font-weight: 700;
   }
 
+  /* ---- Hero ---- */
+
   .hero-section {
     display: flex;
+    align-items: center;
     gap: 56px;
-    padding: 0 48px 48px;
+    padding: 48px 120px;
   }
 
   .portrait {
     width: 340px;
+    height: 420px;
     flex-shrink: 0;
     border-radius: 12px;
     overflow: hidden;
+    border: 1px solid var(--color-border);
   }
 
   .portrait img {
@@ -195,39 +290,57 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    padding: 8px 14px;
     font-family: "Geist Mono", monospace;
     font-size: 12px;
-    color: var(--color-text-secondary);
+    font-weight: 500;
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+    border-radius: 9999px;
   }
 
   .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #34d399;
+    background: var(--color-accent);
   }
 
-  .location {
+  .location-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-family: "Geist Mono", monospace;
+    gap: 8px;
+    padding: 8px 14px;
     font-size: 12px;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+  }
+
+  .location-badge svg {
     color: var(--color-text-tertiary);
+  }
+
+  /* ---- Dividers ---- */
+
+  .divider-wrap {
+    padding: 0 120px;
   }
 
   .divider {
     border: none;
     border-top: 1px solid var(--color-border);
-    margin: 0 48px;
+    margin: 0;
   }
+
+  /* ---- Shared Section Styles ---- */
 
   .section-label {
     font-family: "Geist Mono", monospace;
     font-size: 11px;
     font-weight: 600;
     color: var(--color-text-tertiary);
-    letter-spacing: 0.05em;
+    letter-spacing: 1.5px;
   }
 
   .section-title {
@@ -236,17 +349,99 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     font-weight: 700;
   }
 
-  .experience-section,
-  .skills-section {
+  /* ---- Experience ---- */
+
+  .experience-section {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding: 48px;
+    padding: 48px 120px;
   }
 
   .timeline {
     display: flex;
     flex-direction: column;
+  }
+
+  .timeline-entry {
+    display: flex;
+    gap: 24px;
+  }
+
+  .timeline-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24px;
+    flex-shrink: 0;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .timeline-dot.current {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .timeline-connector {
+    width: 1px;
+    flex: 1;
+    background: var(--color-border);
+  }
+
+  .timeline-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 32px;
+  }
+
+  .timeline-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .timeline-role {
+    font-family: "Geist", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .timeline-period {
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  .timeline-company {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ---- Skills ---- */
+
+  .skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 48px 120px;
   }
 
   .skills-grid {
@@ -262,7 +457,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     padding: 24px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: 8px;
   }
 
   .skill-col-title {
@@ -271,10 +466,37 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     font-weight: 600;
   }
 
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .skill-bullet {
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  /* ---- Beyond Code ---- */
+
   .beyond-code {
     display: flex;
     gap: 56px;
-    padding: 48px;
+    padding: 48px 120px;
   }
 
   .beyond-left {
@@ -282,6 +504,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     display: flex;
     flex-direction: column;
     gap: 24px;
+    align-self: flex-start;
   }
 
   .section-desc {
@@ -297,17 +520,56 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     gap: 16px;
   }
 
+  .interest-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .interest-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--color-accent-dim);
+    color: var(--color-accent);
+  }
+
+  .interest-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .interest-title {
+    font-family: "Geist", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .interest-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ---- Connect CTA ---- */
+
   .connect-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding: 64px 48px;
-    margin: 0 48px;
+    padding: 56px 120px;
     background: var(--color-bg-secondary);
-    border-radius: 16px;
     text-align: center;
-    margin-bottom: 48px;
   }
 
   .cta-label {
@@ -315,7 +577,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     font-size: 11px;
     font-weight: 600;
     color: var(--color-accent);
-    letter-spacing: 0.05em;
+    letter-spacing: 1.5px;
   }
 
   .cta-title {
@@ -327,7 +589,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
   .cta-desc {
     font-size: 15px;
     color: var(--color-text-secondary);
-    max-width: 480px;
+    line-height: 1.5;
   }
 
   .cta-actions {
@@ -340,6 +602,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
+    font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 500;
     border-radius: 8px;
@@ -351,6 +614,7 @@ import Breadcrumb from "../components/Breadcrumb.astro";
   .btn-primary {
     background: var(--color-accent);
     color: #ffffff;
+    font-weight: 600;
   }
 
   .btn-primary:hover {
@@ -392,9 +656,36 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     border-color: var(--color-border-hover);
   }
 
+  /* ---- Responsive ---- */
+
   @media (max-width: 1024px) {
+    .page-intro {
+      padding: 48px 48px 32px;
+    }
+
+    .hero-section {
+      padding: 48px;
+    }
+
+    .divider-wrap {
+      padding: 0 48px;
+    }
+
+    .experience-section,
+    .skills-section {
+      padding: 48px;
+    }
+
     .skills-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .beyond-code {
+      padding: 48px;
+    }
+
+    .connect-section {
+      padding: 56px 48px;
     }
   }
 
@@ -415,15 +706,19 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
     .portrait {
       width: 100%;
-      max-height: 300px;
+      height: 300px;
     }
 
     .headline {
       font-size: 22px;
     }
 
-    .divider {
-      margin: 0 24px;
+    .status-row {
+      flex-wrap: wrap;
+    }
+
+    .divider-wrap {
+      padding: 0 24px;
     }
 
     .experience-section,
@@ -433,6 +728,12 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
     .section-title {
       font-size: 22px;
+    }
+
+    .timeline-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
     }
 
     .skills-grid {
@@ -446,7 +747,6 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     }
 
     .connect-section {
-      margin: 0 24px 32px;
       padding: 40px 24px;
     }
 

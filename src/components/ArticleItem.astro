@@ -5,12 +5,13 @@ interface Props {
   date: string;
   readTime: string;
   href?: string;
+  "data-category"?: string;
 }
 
-const { title, excerpt, date, readTime, href = "#" } = Astro.props;
+const { title, excerpt, date, readTime, href = "#", "data-category": category } = Astro.props;
 ---
 
-<a href={href} class="article-item">
+<a href={href} class="article-item" data-category={category}>
   <h3 class="title">{title}</h3>
   <p class="excerpt">{excerpt}</p>
   <div class="meta">

@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import FeaturedBlogCard from "../components/FeaturedBlogCard.astro";
 import ArticleItem from "../components/ArticleItem.astro";
+import TechBadge from "../components/TechBadge.astro";
 
 const featured = {
   title: "Building a Real-Time Collaboration Engine from Scratch",
@@ -20,40 +21,46 @@ const articles = [
     excerpt: "Type-safe APIs end-to-end changed how I think about client-server communication and development velocity.",
     date: "Jun 28, 2026",
     readTime: "5 min read",
+    category: "development",
   },
   {
     title: "Optimizing Docker Builds for Monorepos",
     excerpt: "Cutting CI build times by 70% with multi-stage builds, BuildKit caching, and intelligent layer ordering.",
     date: "Jun 10, 2026",
     readTime: "6 min read",
+    category: "devops",
   },
   {
     title: "A Practical Guide to Database Migrations",
     excerpt: "Strategies for zero-downtime schema changes in production PostgreSQL deployments at scale.",
     date: "May 22, 2026",
     readTime: "10 min read",
+    category: "architecture",
   },
   {
     title: "The Case for Server Components",
     excerpt: "How React Server Components changed my mental model of frontend architecture and data fetching patterns.",
     date: "May 5, 2026",
     readTime: "7 min read",
+    category: "development",
   },
   {
     title: "Designing CLI Tools That Developers Love",
     excerpt: "UX principles, progressive disclosure, and ergonomic defaults that make command-line tools a joy to use.",
     date: "Apr 18, 2026",
     readTime: "8 min read",
+    category: "open-source",
   },
   {
     title: "Event Sourcing in Practice",
     excerpt: "Lessons learned from implementing event sourcing in a production fintech application over two years.",
     date: "Mar 30, 2026",
     readTime: "11 min read",
+    category: "architecture",
   },
 ];
 
-const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open Source", "Performance", "Testing"];
+const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Go"];
 ---
 
 <Layout title="Blog — Sudi David">
@@ -74,11 +81,11 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
         <input type="text" placeholder="Search articles..." />
       </div>
       <div class="category-filters">
-        <button class="filter active">All</button>
-        <button class="filter">Development</button>
-        <button class="filter">DevOps</button>
-        <button class="filter">Architecture</button>
-        <button class="filter">Open Source</button>
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="development">Development</button>
+        <button class="filter" data-filter="devops">DevOps</button>
+        <button class="filter" data-filter="architecture">Architecture</button>
+        <button class="filter" data-filter="open-source">Open Source</button>
       </div>
     </div>
 
@@ -101,39 +108,52 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
             excerpt={article.excerpt}
             date={article.date}
             readTime={article.readTime}
+            data-category={article.category}
           />
         ))}
       </section>
 
       <aside class="blog-sidebar">
-        <div class="sidebar-card">
-          <h3 class="sidebar-title">Newsletter</h3>
-          <p class="sidebar-text">Get notified when I publish something new.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="your@email.com" />
-            <button type="submit">Subscribe</button>
-          </form>
+        <div class="newsletter-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <h3 class="nl-title">Stay Updated</h3>
+          <p class="nl-desc">Get notified when I publish new articles. No spam, unsubscribe anytime.</p>
+          <input type="email" class="nl-input" placeholder="your@email.com" />
+          <button type="button" class="nl-button">Subscribe</button>
         </div>
 
         <div class="sidebar-section">
-          <h3 class="sidebar-title">Topics</h3>
+          <span class="sidebar-label">TOPICS</span>
           <div class="topic-tags">
             {topics.map((topic) => (
-              <span class="topic-tag">{topic}</span>
+              <TechBadge label={topic} />
             ))}
           </div>
         </div>
 
         <div class="sidebar-section">
-          <h3 class="sidebar-title">Reading Stats</h3>
-          <div class="reading-stats">
-            <div class="reading-stat">
-              <span class="reading-stat-value">42</span>
-              <span class="reading-stat-label">Articles</span>
+          <span class="sidebar-label">THIS BLOG</span>
+          <div class="blog-stats">
+            <div class="blog-stat-row">
+              <div class="blog-stat-left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                <span>Articles</span>
+              </div>
+              <span class="blog-stat-value">24</span>
             </div>
-            <div class="reading-stat">
-              <span class="reading-stat-value">156k</span>
-              <span class="reading-stat-label">Words</span>
+            <div class="blog-stat-row">
+              <div class="blog-stat-left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
+                <span>Avg. Read</span>
+              </div>
+              <span class="blog-stat-value">7 min</span>
+            </div>
+            <div class="blog-stat-row">
+              <div class="blog-stat-left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>Total Views</span>
+              </div>
+              <span class="blog-stat-value">48.2K</span>
             </div>
           </div>
         </div>
@@ -143,6 +163,28 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
 
   <Footer />
 </Layout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>(".filter");
+  const articles = document.querySelectorAll<HTMLElement>(".article-item");
+
+  filters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filters.forEach((f) => f.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter!;
+
+      articles.forEach((article) => {
+        if (filter === "all" || article.dataset.category === filter) {
+          article.style.display = "";
+        } else {
+          article.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
 
 <style>
   main {
@@ -154,7 +196,7 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 48px 48px 32px;
+    padding: 64px 120px 32px;
   }
 
   .page-title {
@@ -167,13 +209,16 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     font-size: 16px;
     color: var(--color-text-secondary);
     max-width: 560px;
+    line-height: 1.5;
   }
 
   .search-filters {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
-    padding: 0 48px 32px;
+    flex-wrap: wrap;
+    padding: 0 120px 32px;
   }
 
   .search-box {
@@ -181,7 +226,7 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     align-items: center;
     gap: 10px;
     width: 280px;
-    padding: 10px 14px;
+    padding: 10px 16px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 8px;
@@ -207,10 +252,10 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
   }
 
   .filter {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 8px 14px;
+    font-size: 12px;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 9999px;
     background: var(--color-bg-card);
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border);
@@ -233,7 +278,7 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0 48px 40px;
+    padding: 0 120px 40px;
   }
 
   .pinned-label {
@@ -247,15 +292,17 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
   .blog-content {
     display: flex;
     gap: 48px;
-    padding: 0 48px 48px;
+    padding: 32px 120px 48px;
   }
 
   .article-list {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    min-width: 0;
   }
+
+  /* ---- Sidebar ---- */
 
   .blog-sidebar {
     width: 300px;
@@ -263,16 +310,63 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     display: flex;
     flex-direction: column;
     gap: 32px;
+    align-self: flex-start;
   }
 
-  .sidebar-card {
+  .newsletter-card {
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 24px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: 8px;
+    color: var(--color-accent);
+  }
+
+  .nl-title {
+    font-family: "Geist", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .nl-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .nl-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .nl-input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .nl-button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    background: var(--color-accent);
+    color: #ffffff;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+  }
+
+  .nl-button:hover {
+    opacity: 0.9;
   }
 
   .sidebar-section {
@@ -281,44 +375,12 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     gap: 12px;
   }
 
-  .sidebar-title {
-    font-family: "Geist", sans-serif;
-    font-size: 15px;
+  .sidebar-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
     font-weight: 600;
-  }
-
-  .sidebar-text {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 8px;
-  }
-
-  .newsletter-form input {
-    flex: 1;
-    padding: 8px 12px;
-    font-size: 13px;
-    background: var(--color-bg-elevated);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    color: var(--color-text-primary);
-    outline: none;
-  }
-
-  .newsletter-form input::placeholder {
     color: var(--color-text-tertiary);
-  }
-
-  .newsletter-form button {
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    background: var(--color-accent);
-    color: #ffffff;
-    border-radius: 6px;
+    letter-spacing: 1.5px;
   }
 
   .topic-tags {
@@ -327,38 +389,56 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     gap: 8px;
   }
 
-  .topic-tag {
-    padding: 6px 12px;
-    font-family: "Geist Mono", monospace;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-  }
-
-  .reading-stats {
-    display: flex;
-    gap: 24px;
-  }
-
-  .reading-stat {
+  .blog-stats {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
   }
 
-  .reading-stat-value {
-    font-family: "Geist", sans-serif;
-    font-size: 22px;
-    font-weight: 700;
+  .blog-stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
-  .reading-stat-label {
-    font-family: "Geist Mono", monospace;
-    font-size: 11px;
+  .blog-stat-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .blog-stat-left svg {
     color: var(--color-text-tertiary);
-    text-transform: uppercase;
+  }
+
+  .blog-stat-value {
+    font-family: "Geist Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  /* ---- Responsive ---- */
+
+  @media (max-width: 1024px) {
+    .page-intro {
+      padding: 48px 48px 32px;
+    }
+
+    .search-filters {
+      padding: 0 48px 32px;
+    }
+
+    .featured-section {
+      padding: 0 48px 32px;
+    }
+
+    .blog-content {
+      padding: 32px 48px 48px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -373,6 +453,7 @@ const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open S
     .search-filters {
       flex-direction: column;
       align-items: stretch;
+      gap: 16px;
       padding: 0 24px 24px;
     }
 

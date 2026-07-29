@@ -6,15 +6,16 @@ interface Props {
   year: string;
   description: string;
   tags: string[];
+  category: string;
   image?: string;
   sourceUrl?: string;
   liveUrl?: string;
 }
 
-const { title, year, description, tags, image, sourceUrl, liveUrl } = Astro.props;
+const { title, year, description, tags, category, image, sourceUrl, liveUrl } = Astro.props;
 ---
 
-<article class="work-card">
+<article class="work-card" data-category={category}>
   <div class="image-area">
     {
       image ? (

@@ -11,6 +11,7 @@ const projects = [
     year: "2026",
     description: "A lightning-fast CLI tool for scaffolding full-stack apps. Supports React, Vue, and Svelte templates with built-in testing and CI configuration.",
     tags: ["Rust", "CLI", "WASM"],
+    category: "cli-tools",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -19,6 +20,7 @@ const projects = [
     year: "2026",
     description: "Real-time collaborative whiteboard with CRDT-based conflict resolution. Supports drawing, sticky notes, and live cursors for distributed teams.",
     tags: ["React", "WebSocket", "Yjs"],
+    category: "web-apps",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -27,6 +29,7 @@ const projects = [
     year: "2025",
     description: "An ETL pipeline framework for streaming data transformations at scale. Pluggable connectors for Kafka, Redis Streams, and PostgreSQL.",
     tags: ["Go", "Kafka", "gRPC"],
+    category: "open-source",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -35,6 +38,7 @@ const projects = [
     year: "2025",
     description: "Terminal-based dotfile synchronization tool. Keeps dev environments consistent across machines with encrypted cloud backup.",
     tags: ["Rust", "CLI", "SSH"],
+    category: "cli-tools",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -43,6 +47,7 @@ const projects = [
     year: "2024",
     description: "Lightweight state management library for React with automatic dependency tracking and zero-config persistence to localStorage.",
     tags: ["TypeScript", "React", "NPM"],
+    category: "libraries",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -51,6 +56,7 @@ const projects = [
     year: "2024",
     description: "Self-hosted infrastructure monitoring dashboard. Tracks uptime, response times, and alerts via Slack and PagerDuty integrations.",
     tags: ["Next.js", "Docker", "Grafana"],
+    category: "web-apps",
     sourceUrl: "#",
     liveUrl: "#",
   },
@@ -70,26 +76,37 @@ const projects = [
 
       <div class="stats">
         <div class="stat">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path><path d="M12 10v6"></path><path d="m9 13 3-3 3 3"></path></svg>
+          </div>
           <span class="stat-value">12</span>
           <span class="stat-label">Projects</span>
         </div>
+        <div class="stat-divider"></div>
         <div class="stat">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg>
+          </div>
           <span class="stat-value">8</span>
           <span class="stat-label">Open Source</span>
         </div>
+        <div class="stat-divider"></div>
         <div class="stat">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+          </div>
           <span class="stat-value">3</span>
-          <span class="stat-label">Years</span>
+          <span class="stat-label">Active</span>
         </div>
       </div>
     </section>
 
     <div class="filters">
-      <button class="filter active">All</button>
-      <button class="filter">Web Apps</button>
-      <button class="filter">CLI Tools</button>
-      <button class="filter">Libraries</button>
-      <button class="filter">Open Source</button>
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="web-apps">Web Apps</button>
+      <button class="filter" data-filter="cli-tools">CLI Tools</button>
+      <button class="filter" data-filter="libraries">Libraries</button>
+      <button class="filter" data-filter="open-source">Open Source</button>
     </div>
 
     <section class="projects-section">
@@ -100,6 +117,7 @@ const projects = [
             year={project.year}
             description={project.description}
             tags={project.tags}
+            category={project.category}
             sourceUrl={project.sourceUrl}
             liveUrl={project.liveUrl}
           />
@@ -111,6 +129,28 @@ const projects = [
   <Footer />
 </Layout>
 
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>(".filter");
+  const cards = document.querySelectorAll<HTMLElement>(".work-card");
+
+  filters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filters.forEach((f) => f.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter!;
+
+      cards.forEach((card) => {
+        if (filter === "all" || card.dataset.category === filter) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
+
 <style>
   main {
     max-width: 1440px;
@@ -121,7 +161,7 @@ const projects = [
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 48px 48px 32px;
+    padding: 64px 120px 32px;
   }
 
   .page-title {
@@ -138,40 +178,60 @@ const projects = [
 
   .stats {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 0;
     margin-top: 8px;
   }
 
   .stat {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 28px;
+  }
+
+  .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-accent);
   }
 
   .stat-value {
-    font-family: "Geist", sans-serif;
+    font-family: "Geist Mono", monospace;
     font-size: 28px;
     font-weight: 700;
   }
 
   .stat-label {
-    font-family: "Geist Mono", monospace;
+    font-family: "Inter", sans-serif;
     font-size: 12px;
+    font-weight: 500;
     color: var(--color-text-tertiary);
-    text-transform: uppercase;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--color-border);
   }
 
   .filters {
     display: flex;
     gap: 8px;
-    padding: 0 48px 32px;
+    padding: 0 120px 32px;
   }
 
   .filter {
     padding: 8px 16px;
     font-size: 13px;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 9999px;
     background: var(--color-bg-card);
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border);
@@ -194,13 +254,27 @@ const projects = [
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0 48px 48px;
+    padding: 0 120px 48px;
   }
 
   .grid-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .page-intro {
+      padding: 48px 48px 32px;
+    }
+
+    .filters {
+      padding: 0 48px 32px;
+    }
+
+    .projects-section {
+      padding: 0 48px 48px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -213,7 +287,11 @@ const projects = [
     }
 
     .stats {
-      gap: 24px;
+      gap: 0;
+    }
+
+    .stat {
+      padding: 16px 20px;
     }
 
     .stat-value {
