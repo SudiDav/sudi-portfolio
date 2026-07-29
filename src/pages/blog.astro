@@ -3,6 +3,57 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+import FeaturedBlogCard from "../components/FeaturedBlogCard.astro";
+import ArticleItem from "../components/ArticleItem.astro";
+
+const featured = {
+  title: "Building a Real-Time Collaboration Engine from Scratch",
+  excerpt: "A deep dive into CRDTs, operational transforms, and the architecture decisions behind building conflict-free real-time editing.",
+  date: "Jul 15, 2026",
+  readTime: "12 min read",
+  category: "DEVELOPMENT",
+};
+
+const articles = [
+  {
+    title: "Why I Switched from REST to tRPC",
+    excerpt: "Type-safe APIs end-to-end changed how I think about client-server communication and development velocity.",
+    date: "Jun 28, 2026",
+    readTime: "5 min read",
+  },
+  {
+    title: "Optimizing Docker Builds for Monorepos",
+    excerpt: "Cutting CI build times by 70% with multi-stage builds, BuildKit caching, and intelligent layer ordering.",
+    date: "Jun 10, 2026",
+    readTime: "6 min read",
+  },
+  {
+    title: "A Practical Guide to Database Migrations",
+    excerpt: "Strategies for zero-downtime schema changes in production PostgreSQL deployments at scale.",
+    date: "May 22, 2026",
+    readTime: "10 min read",
+  },
+  {
+    title: "The Case for Server Components",
+    excerpt: "How React Server Components changed my mental model of frontend architecture and data fetching patterns.",
+    date: "May 5, 2026",
+    readTime: "7 min read",
+  },
+  {
+    title: "Designing CLI Tools That Developers Love",
+    excerpt: "UX principles, progressive disclosure, and ergonomic defaults that make command-line tools a joy to use.",
+    date: "Apr 18, 2026",
+    readTime: "8 min read",
+  },
+  {
+    title: "Event Sourcing in Practice",
+    excerpt: "Lessons learned from implementing event sourcing in a production fintech application over two years.",
+    date: "Mar 30, 2026",
+    readTime: "11 min read",
+  },
+];
+
+const topics = ["React", "TypeScript", "DevOps", "Architecture", "Rust", "Open Source", "Performance", "Testing"];
 ---
 
 <Layout title="Blog — Sudi David">
@@ -33,12 +84,25 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
     <section class="featured-section">
       <span class="pinned-label">PINNED</span>
-      <!-- FeaturedBlogCard component will go here -->
+      <FeaturedBlogCard
+        title={featured.title}
+        excerpt={featured.excerpt}
+        date={featured.date}
+        readTime={featured.readTime}
+        category={featured.category}
+      />
     </section>
 
     <div class="blog-content">
       <section class="article-list">
-        <!-- ArticleItem components will go here -->
+        {articles.map((article) => (
+          <ArticleItem
+            title={article.title}
+            excerpt={article.excerpt}
+            date={article.date}
+            readTime={article.readTime}
+          />
+        ))}
       </section>
 
       <aside class="blog-sidebar">
@@ -53,12 +117,25 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
         <div class="sidebar-section">
           <h3 class="sidebar-title">Topics</h3>
-          <!-- Topic tags will go here -->
+          <div class="topic-tags">
+            {topics.map((topic) => (
+              <span class="topic-tag">{topic}</span>
+            ))}
+          </div>
         </div>
 
         <div class="sidebar-section">
           <h3 class="sidebar-title">Reading Stats</h3>
-          <!-- Stats will go here -->
+          <div class="reading-stats">
+            <div class="reading-stat">
+              <span class="reading-stat-value">42</span>
+              <span class="reading-stat-label">Articles</span>
+            </div>
+            <div class="reading-stat">
+              <span class="reading-stat-value">156k</span>
+              <span class="reading-stat-label">Words</span>
+            </div>
+          </div>
         </div>
       </aside>
     </div>
@@ -242,5 +319,88 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     background: var(--color-accent);
     color: #ffffff;
     border-radius: 6px;
+  }
+
+  .topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .topic-tag {
+    padding: 6px 12px;
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+  }
+
+  .reading-stats {
+    display: flex;
+    gap: 24px;
+  }
+
+  .reading-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .reading-stat-value {
+    font-family: "Geist", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .reading-stat-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .page-intro {
+      padding: 32px 24px 24px;
+    }
+
+    .page-title {
+      font-size: 32px;
+    }
+
+    .search-filters {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0 24px 24px;
+    }
+
+    .search-box {
+      width: 100%;
+    }
+
+    .category-filters {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter {
+      white-space: nowrap;
+    }
+
+    .featured-section {
+      padding: 0 24px 32px;
+    }
+
+    .blog-content {
+      flex-direction: column;
+      padding: 0 24px 32px;
+      gap: 32px;
+    }
+
+    .blog-sidebar {
+      width: 100%;
+    }
   }
 </style>

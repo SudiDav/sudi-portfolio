@@ -1,0 +1,159 @@
+---
+import TechBadge from "./TechBadge.astro";
+
+interface Props {
+  title: string;
+  year: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  sourceUrl?: string;
+  liveUrl?: string;
+}
+
+const { title, year, description, tags, image, sourceUrl, liveUrl } = Astro.props;
+---
+
+<article class="work-card">
+  <div class="image-area">
+    {
+      image ? (
+        <img src={image} alt={title} loading="lazy" />
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+      )
+    }
+  </div>
+
+  <div class="card-body">
+    <div class="card-header">
+      <h3 class="title">{title}</h3>
+      <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+    </div>
+    <span class="year">{year}</span>
+    <p class="description">{description}</p>
+    <div class="tags">
+      {tags.map((tag) => <TechBadge label={tag} />)}
+    </div>
+    <div class="links">
+      {
+        sourceUrl && (
+          <a href={sourceUrl} class="card-link" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+            Source
+          </a>
+        )
+      }
+      {
+        liveUrl && (
+          <a href={liveUrl} class="card-link" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+            Live Demo
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+    transition: border-color 0.2s;
+  }
+
+  .work-card:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .image-area {
+    width: 100%;
+    height: 200px;
+    background: var(--color-bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-tertiary);
+    overflow: hidden;
+  }
+
+  .image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-family: "Geist", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .link-icon {
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .year {
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .description {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .card-link:hover {
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+  }
+</style>

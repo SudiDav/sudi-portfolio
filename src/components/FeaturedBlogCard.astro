@@ -1,0 +1,132 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image?: string;
+  href?: string;
+}
+
+const { title, excerpt, date, readTime, category, image, href = "#" } = Astro.props;
+---
+
+<a href={href} class="featured-card">
+  <div class="image">
+    {
+      image ? (
+        <img src={image} alt={title} loading="lazy" />
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+      )
+    }
+  </div>
+
+  <div class="body">
+    <span class="category-badge">{category}</span>
+    <h3 class="title">{title}</h3>
+    <p class="excerpt">{excerpt}</p>
+    <div class="meta">
+      <span class="date">{date}</span>
+      <span class="dot">&middot;</span>
+      <span class="read-time">{readTime}</span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .featured-card {
+    display: flex;
+    height: 320px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+    transition: border-color 0.2s;
+  }
+
+  .featured-card:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .image {
+    width: 380px;
+    flex-shrink: 0;
+    background: var(--color-bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-tertiary);
+    overflow: hidden;
+  }
+
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px;
+  }
+
+  .category-badge {
+    align-self: flex-start;
+    padding: 4px 10px;
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+    border-radius: 9999px;
+  }
+
+  .title {
+    font-family: "Geist", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .excerpt {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .featured-card {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .image {
+      width: 100%;
+      height: 200px;
+    }
+
+    .body {
+      padding: 24px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+  }
+</style>

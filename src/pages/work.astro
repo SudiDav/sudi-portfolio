@@ -3,6 +3,58 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+import WorkProjectCard from "../components/WorkProjectCard.astro";
+
+const projects = [
+  {
+    title: "Nexus CLI",
+    year: "2026",
+    description: "A lightning-fast CLI tool for scaffolding full-stack apps. Supports React, Vue, and Svelte templates with built-in testing and CI configuration.",
+    tags: ["Rust", "CLI", "WASM"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+  {
+    title: "Syncboard",
+    year: "2026",
+    description: "Real-time collaborative whiteboard with CRDT-based conflict resolution. Supports drawing, sticky notes, and live cursors for distributed teams.",
+    tags: ["React", "WebSocket", "Yjs"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+  {
+    title: "Datapipe",
+    year: "2025",
+    description: "An ETL pipeline framework for streaming data transformations at scale. Pluggable connectors for Kafka, Redis Streams, and PostgreSQL.",
+    tags: ["Go", "Kafka", "gRPC"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+  {
+    title: "Termsync",
+    year: "2025",
+    description: "Terminal-based dotfile synchronization tool. Keeps dev environments consistent across machines with encrypted cloud backup.",
+    tags: ["Rust", "CLI", "SSH"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+  {
+    title: "Reacton",
+    year: "2024",
+    description: "Lightweight state management library for React with automatic dependency tracking and zero-config persistence to localStorage.",
+    tags: ["TypeScript", "React", "NPM"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+  {
+    title: "Infrawatch",
+    year: "2024",
+    description: "Self-hosted infrastructure monitoring dashboard. Tracks uptime, response times, and alerts via Slack and PagerDuty integrations.",
+    tags: ["Next.js", "Docker", "Grafana"],
+    sourceUrl: "#",
+    liveUrl: "#",
+  },
+];
 ---
 
 <Layout title="Work — Sudi David">
@@ -42,7 +94,16 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
     <section class="projects-section">
       <div class="grid-row">
-        <!-- WorkProjectCard components will go here -->
+        {projects.map((project) => (
+          <WorkProjectCard
+            title={project.title}
+            year={project.year}
+            description={project.description}
+            tags={project.tags}
+            sourceUrl={project.sourceUrl}
+            liveUrl={project.liveUrl}
+          />
+        ))}
       </div>
     </section>
   </main>
@@ -140,5 +201,41 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .page-intro {
+      padding: 32px 24px 24px;
+    }
+
+    .page-title {
+      font-size: 32px;
+    }
+
+    .stats {
+      gap: 24px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+    }
+
+    .filters {
+      padding: 0 24px 24px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter {
+      white-space: nowrap;
+    }
+
+    .projects-section {
+      padding: 0 24px 32px;
+    }
+
+    .grid-row {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

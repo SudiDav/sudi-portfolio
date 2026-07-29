@@ -15,35 +15,75 @@ const navLinks = [
 ---
 
 <header class="header">
-  <a href="/" class="logo" aria-label="Home">
-    <img src="/logo.svg" alt="Sudi David" width="80" height="33" />
-  </a>
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Home">
+      <img src="/logo.svg" alt="Sudi David" width="80" height="33" />
+    </a>
 
-  <nav class="header-right">
-    {
-      navLinks.map(({ label, href }) => (
-        <a
-          href={href}
-          class:list={["nav-link", { active: currentPath === href }]}
-        >
-          {label}
-        </a>
-      ))
-    }
-    <ThemeToggle />
-  </nav>
+    <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+      <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+
+    <nav class="header-right">
+      {
+        navLinks.map(({ label, href }) => (
+          <a
+            href={href}
+            class:list={["nav-link", { active: currentPath === href }]}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </nav>
+  </div>
 </header>
+
+<script>
+  const toggle = document.querySelector(".menu-toggle")!;
+  const nav = document.querySelector(".header-right")!;
+
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+</script>
 
 <style>
   .header {
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
     padding: 16px 48px;
-    border-bottom: 1px solid var(--color-border);
   }
 
   .logo img {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+    color: var(--color-text-primary);
+  }
+
+  .icon-close {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded="true"] .icon-menu {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded="true"] .icon-close {
     display: block;
   }
 
@@ -64,5 +104,44 @@ const navLinks = [
   .nav-link:hover,
   .nav-link.active {
     color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .header-inner {
+      padding: 16px 24px;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .header-right {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 0;
+      background: var(--color-bg-primary);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+    }
+
+    .header-right.open {
+      display: flex;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 12px 24px;
+      width: 100%;
+    }
+
+    .header-right :global(.theme-toggle) {
+      margin: 8px 24px 12px;
+      align-self: flex-start;
+    }
   }
 </style>
