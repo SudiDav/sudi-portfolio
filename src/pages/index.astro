@@ -8,46 +8,50 @@ import TechBadge from "../components/TechBadge.astro";
 
 const projects = [
   {
-    title: "Nexus CLI",
-    description: "A lightning-fast CLI tool for scaffolding full-stack apps with best practices built in.",
-    tags: ["Rust", "CLI"],
+    title: "Almafrica",
+    description: "Agritech platform helping farmers join the world of tech — architected the mobile app, frontend, and backend.",
+    tags: ["Agritech", "Full-Stack"],
   },
   {
-    title: "Syncboard",
-    description: "Real-time collaborative whiteboard with CRDT-based conflict resolution.",
-    tags: ["React", "WebSocket"],
+    title: "Jungle — Loan Management",
+    description: "Loan asset management system for Altech Group, integrated with Xero and Telerivet.",
+    tags: [".NET", "Fintech"],
   },
   {
-    title: "Datapipe",
-    description: "ETL pipeline framework for streaming data transformations at scale.",
-    tags: ["Go", "Kafka"],
+    title: "WavesOps",
+    description: "Mineral dispatch and haul operations control room for mining logistics in Kolwezi, DRC.",
+    tags: ["Operations", "Dashboard"],
   },
 ];
 
 const articles = [
   {
-    title: "Building a Real-Time Collaboration Engine",
-    excerpt: "How I implemented CRDTs for conflict-free real-time editing across distributed clients.",
-    date: "Jul 15, 2026",
-    readTime: "8 min read",
-  },
-  {
-    title: "Why I Switched from REST to tRPC",
-    excerpt: "Type-safe APIs end-to-end changed how I think about client-server communication.",
-    date: "Jun 28, 2026",
+    title: "Observability 101: Stop Debugging in the Dark",
+    excerpt: "Why systems without telemetry are logistics networks running blind, and the conceptual foundation to fix it.",
+    date: "May 12, 2026",
     readTime: "5 min read",
+    link: "https://sudi.dev/observability-101-stop-debugging-in-the-dark",
   },
   {
-    title: "Optimizing Docker Builds for Monorepos",
-    excerpt: "Cutting CI build times by 70% with multi-stage builds and intelligent layer caching.",
-    date: "Jun 10, 2026",
+    title: "The Crucial Role of English Proficiency in Software Development",
+    excerpt: "Why clear English matters as much as clean code when working on distributed, multicultural teams.",
+    date: "Sep 21, 2024",
+    readTime: "5 min read",
+    link: "https://sudi.dev/the-crucial-role-of-english-proficiency-in-software-development",
+  },
+  {
+    title: "Code Smart, Not Fast: Avoiding Premature Optimization",
+    excerpt: "Why optimizing too early keeps derailing projects, and how to focus on correctness first.",
+    date: "Sep 14, 2024",
+    readTime: "4 min read",
+    link: "https://sudi.dev/code-smart-not-fast-avoiding-premature-optimization",
+  },
+  {
+    title: "Adding Entity Framework Core and SQLite",
+    excerpt: "Wiring up SQLite and Entity Framework Core to store and retrieve data in a Minimal API.",
+    date: "Nov 14, 2023",
     readTime: "6 min read",
-  },
-  {
-    title: "A Practical Guide to Database Migrations",
-    excerpt: "Strategies for zero-downtime schema changes in production PostgreSQL deployments.",
-    date: "May 22, 2026",
-    readTime: "10 min read",
+    link: "https://sudi.dev/adding-entity-framework-core-and-sqlite",
   },
 ];
 ---
@@ -69,11 +73,11 @@ const articles = [
       </div>
 
       <div class="code-snippet code-snippet-1" aria-hidden="true">
-        <code><span class="keyword">async function</span> <span class="accent">deploy</span>() &#123;</code>
-        <code>&nbsp; <span class="keyword">await</span> build();</code>
-        <code>&nbsp; <span class="keyword">await</span> test();</code>
-        <code>&nbsp; <span class="keyword">return</span> <span class="accent">ship</span>();</code>
-        <code>&#125;;</code>
+        <code><span class="keyword">// Life.cs</span></code>
+        <code><span class="keyword">while</span> (Life.IsRunning) &#123;</code>
+        <code>&nbsp; <span class="keyword">if</span> (!IsCoding)</code>
+        <code>&nbsp; &nbsp; <span class="keyword">await</span> <span class="accent">TouchGrass</span>();</code>
+        <code>&#125;</code>
       </div>
       <div class="code-snippet code-snippet-2" aria-hidden="true">
         <code>const dev = &#123;</code>
@@ -100,17 +104,17 @@ const articles = [
         <div class="tech-stack">
           <span class="tech-label">TECH STACK</span>
           <div class="tech-row">
-            <TechBadge label="React" />
+            <TechBadge label=".NET C#" />
             <TechBadge label="TypeScript" />
           </div>
           <div class="tech-row">
-            <TechBadge label="Node.js" />
-            <TechBadge label="Go" />
-            <TechBadge label="Docker" />
+            <TechBadge label="NodeJS" />
+            <TechBadge label="React" />
+            <TechBadge label="Vue" />
           </div>
           <div class="tech-row">
             <TechBadge label="PostgreSQL" />
-            <TechBadge label="Redis" />
+            <TechBadge label="Docker" />
           </div>
         </div>
         <div class="socials">
@@ -155,7 +159,7 @@ const articles = [
                 excerpt={article.excerpt}
                 date={article.date}
                 readTime={article.readTime}
-                href="/blog/real-time-collaboration"
+                href={article.link}
               />
             ))}
           </div>
