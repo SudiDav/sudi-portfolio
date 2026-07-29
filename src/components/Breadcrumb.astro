@@ -1,0 +1,40 @@
+---
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/" class="crumb">Home</a>
+  <span class="separator">/</span>
+  <span class="crumb current">{current}</span>
+</nav>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+  }
+
+  .crumb {
+    color: var(--color-text-tertiary);
+    transition: color 0.2s;
+  }
+
+  a.crumb:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .separator {
+    color: var(--color-text-tertiary);
+  }
+
+  .current {
+    color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+---
+
+<Layout title="Work — Sudi David">
+  <Header currentPath="/work" />
+
+  <main>
+    <section class="page-intro">
+      <Breadcrumb current="Work" />
+      <h1 class="page-title">Work</h1>
+      <p class="page-subtitle">
+        A collection of projects I've built, contributed to, or am currently working on.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value">12</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">8</span>
+          <span class="stat-label">Open Source</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Years</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="filters">
+      <button class="filter active">All</button>
+      <button class="filter">Web Apps</button>
+      <button class="filter">CLI Tools</button>
+      <button class="filter">Libraries</button>
+      <button class="filter">Open Source</button>
+    </div>
+
+    <section class="projects-section">
+      <div class="grid-row">
+        <!-- WorkProjectCard components will go here -->
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .page-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 48px 48px 32px;
+  }
+
+  .page-title {
+    font-family: "Geist", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 8px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-family: "Geist", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .stat-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+  }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+    padding: 0 48px 32px;
+  }
+
+  .filter {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    background: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .filter:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .filter.active {
+    background: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+
+  .projects-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 48px 48px;
+  }
+
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+</style>

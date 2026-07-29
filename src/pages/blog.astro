@@ -1,0 +1,246 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+---
+
+<Layout title="Blog — Sudi David">
+  <Header currentPath="/blog" />
+
+  <main>
+    <section class="page-intro">
+      <Breadcrumb current="Blog" />
+      <h1 class="page-title">Blog</h1>
+      <p class="page-subtitle">
+        Thoughts on software engineering, developer tooling, and the occasional deep dive.
+      </p>
+    </section>
+
+    <div class="search-filters">
+      <div class="search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="text" placeholder="Search articles..." />
+      </div>
+      <div class="category-filters">
+        <button class="filter active">All</button>
+        <button class="filter">Development</button>
+        <button class="filter">DevOps</button>
+        <button class="filter">Architecture</button>
+        <button class="filter">Open Source</button>
+      </div>
+    </div>
+
+    <section class="featured-section">
+      <span class="pinned-label">PINNED</span>
+      <!-- FeaturedBlogCard component will go here -->
+    </section>
+
+    <div class="blog-content">
+      <section class="article-list">
+        <!-- ArticleItem components will go here -->
+      </section>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">Newsletter</h3>
+          <p class="sidebar-text">Get notified when I publish something new.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="your@email.com" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Topics</h3>
+          <!-- Topic tags will go here -->
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Reading Stats</h3>
+          <!-- Stats will go here -->
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .page-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 48px 48px 32px;
+  }
+
+  .page-title {
+    font-family: "Geist", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+  }
+
+  .search-filters {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 48px 32px;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 280px;
+    padding: 10px 14px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-tertiary);
+  }
+
+  .search-box input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    color: var(--color-text-primary);
+  }
+
+  .search-box input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .category-filters {
+    display: flex;
+    gap: 8px;
+  }
+
+  .filter {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    background: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .filter:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .filter.active {
+    background: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+
+  .featured-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 48px 40px;
+  }
+
+  .pinned-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.05em;
+  }
+
+  .blog-content {
+    display: flex;
+    gap: 48px;
+    padding: 0 48px 48px;
+  }
+
+  .article-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .blog-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .sidebar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar-title {
+    font-family: "Geist", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .sidebar-text {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .newsletter-form button {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--color-accent);
+    color: #ffffff;
+    border-radius: 6px;
+  }
+</style>

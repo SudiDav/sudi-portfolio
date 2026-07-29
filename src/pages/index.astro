@@ -1,0 +1,253 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Sudi David — Full-Stack Developer">
+  <Header currentPath="/" />
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="terminal-line">
+          <span class="prompt">~$</span>
+          <span class="command">whoami</span>
+        </div>
+        <h1 class="greeting">Hi, I'm Sudi David</h1>
+        <p class="role">Full-Stack Developer & Open Source Enthusiast</p>
+        <div class="hero-actions">
+          <a href="/work" class="btn btn-primary">View My Work</a>
+          <a href="/blog" class="btn btn-secondary">Read Blog</a>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="profile-photo">
+          <img src="/avatar.jpg" alt="Sudi David" width="80" height="80" />
+        </div>
+        <div class="status">
+          <span class="status-dot"></span>
+          <span class="status-text">Available for work</span>
+        </div>
+        <p class="bio">
+          Building things for the web. Passionate about developer tools, open
+          source, and clean architecture.
+        </p>
+        <div class="code-snippet">
+          <code>const dev = &#123;</code>
+          <code class="accent">&nbsp; name: "Sudi",</code>
+          <code class="accent">&nbsp; loves: "clean code",</code>
+          <code class="accent">&nbsp; coffee: true,</code>
+          <code>&#125;;</code>
+        </div>
+      </aside>
+    </section>
+
+    <div class="content-area">
+      <section class="main-content">
+        <div class="section-header">
+          <h2 class="section-title">Featured Projects</h2>
+          <a href="/work" class="view-all">View all &rarr;</a>
+        </div>
+        <div class="projects-grid">
+          <!-- ProjectCard components will go here -->
+        </div>
+
+        <div class="section-header">
+          <h2 class="section-title">Latest Articles</h2>
+          <a href="/blog" class="view-all">View all &rarr;</a>
+        </div>
+        <div class="articles-list">
+          <!-- ArticleItem components will go here -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    display: flex;
+    padding: 80px 48px 64px;
+    gap: 48px;
+  }
+
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .terminal-line {
+    display: flex;
+    gap: 8px;
+    font-family: "Geist Mono", monospace;
+    font-size: 14px;
+  }
+
+  .prompt {
+    color: var(--color-accent);
+  }
+
+  .command {
+    color: var(--color-text-tertiary);
+  }
+
+  .greeting {
+    font-family: "Geist", sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .role {
+    font-size: 20px;
+    color: var(--color-text-secondary);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 32px 32px 32px 0;
+  }
+
+  .profile-photo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34d399;
+  }
+
+  .status-text {
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  .bio {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .code-snippet {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 20px;
+    background: var(--color-bg-secondary);
+    border-radius: 8px;
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+
+  .code-snippet .accent {
+    color: var(--color-accent);
+  }
+
+  .content-area {
+    padding: 0 48px;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 32px 0 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-title {
+    font-family: "Geist", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .view-all {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: opacity 0.2s;
+  }
+
+  .view-all:hover {
+    opacity: 0.8;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
