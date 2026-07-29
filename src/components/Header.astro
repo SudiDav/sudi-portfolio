@@ -16,8 +16,11 @@ const navLinks = [
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="logo" aria-label="Home">
-      <img src="/logo.svg" alt="Sudi David" width="80" height="33" />
+    <a href="/" class="logo" aria-label="Sudi David — Home">
+      <svg width="34" height="27" viewBox="0 0 152 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M150.004 27.8696C151.026 30.7241 151.416 32.5217 151.765 36.105V44.0464C151.602 49.9723 151.109 53.1295 149.416 58.4585C146.48 68.7525 140.903 79.6346 133.564 89.3403C123.712 100.494 117.126 106.399 105.678 112.576C96.1647 117.153 90.512 118.709 79.8457 119.634H0L4.10938 105.517H61.3516C68.9838 104.929 76.9095 100.222 82.1934 93.1636C85.7751 88.0396 87.3215 84.7641 89.2393 78.1636L97.752 39.9282C100.394 32.2815 108.026 27.8697 116.245 27.8696H150.004ZM111.842 0.811035C119.205 1.48118 123.19 2.44589 130.042 5.22314C135.166 8.07374 137.81 9.99192 142.077 14.0464H90.7061C83.7316 14.4823 80.2102 15.7584 74.5615 19.6343C68.6801 24.526 65.9624 28.4704 61.9385 37.5757C59.7604 43.2325 58.4242 49.119 55.7744 64.9282C53.1919 78.8358 51.092 83.7847 46.3809 87.5757C41.7276 90.5103 38.7736 91.2453 33.1709 91.6938H8.21875L26.7129 26.3989C33.8494 7.14296 41.4094 1.9108 60.1777 0.811035H111.842Z" fill="currentColor"/>
+      </svg>
+      <span class="logo-name">Sudi David</span>
     </a>
 
     <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
@@ -66,8 +69,24 @@ const navLinks = [
     padding: 16px 48px;
   }
 
-  .logo img {
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-primary);
+  }
+
+  .logo svg {
     display: block;
+    color: var(--color-accent);
+  }
+
+  .logo-name {
+    font-family: "Geist", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
   }
 
   .menu-toggle {
