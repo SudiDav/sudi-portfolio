@@ -65,7 +65,9 @@ const related = [
     </section>
 
     <div class="cover-wrap">
-      <div class="cover-image"></div>
+      <div class="cover-image">
+        <img src="/images/article-cover.jpg" alt="Real-time collaboration engine" />
+      </div>
     </div>
 
     <article class="article-body">
@@ -305,10 +307,13 @@ const related = [
     height: 400px;
     border-radius: 12px;
     overflow: hidden;
-    background:
-      radial-gradient(ellipse at 30% 50%, rgba(96, 126, 188, 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 40%, rgba(96, 126, 188, 0.1) 0%, transparent 50%),
-      var(--color-bg-card);
+    background: var(--color-bg-card);
+  }
+
+  .cover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* ---- Article Body ---- */
